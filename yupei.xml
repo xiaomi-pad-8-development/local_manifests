@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+  <remote name="lineage-gh" fetch="https://github.com/LineageOS" />
+  <remote name="pixelos-devices" fetch="https://github.com/PixelOS-Devices" />
+  <remote name="xpad8" fetch="https://github.com/xiaomi-pad-8-development" />
+  <remote name="gitlab-sidharthify" fetch="https://gitlab.com/sidharthify" />
+
+  <!-- Device -->
+  <project path="device/xiaomi/yupei" name="android_device_xiaomi_yupei" remote="xpad8" revision="yaap-seventeen" />
+  <project path="device/xiaomi/yupei-kernel" name="android_device_xiaomi_yupei-kernel" remote="pixelos-devices" revision="seventeen" clone-depth="1" />
+  <project path="vendor/xiaomi/yupei" name="android_vendor_xiaomi_yupei" remote="gitlab-sidharthify" revision="seventeen" clone-depth="1" />
+  <project path="hardware/xiaomi" name="hardware_xiaomi" remote="yaap" />
+
+  <!-- Thermal with the tuna skin config -->
+  <remove-project name="hardware_qcom-caf_thermal" />
+  <project path="hardware/qcom-caf/thermal" name="android_hardware_qcom_thermal" remote="xpad8" revision="lineage-24.0" />
+
+  <!-- 64-bit 21.12 vendorcompat protobuf, flipendo sepolicy in system_ext -->
+  <remove-project name="hardware_lineage_compat" />
+  <project path="hardware/lineage/compat" name="android_hardware_lineage_compat" remote="xpad8" revision="seventeen" />
+  <remove-project name="vendor_yaap" />
+  <project path="vendor/yaap" name="android_vendor_yaap" remote="xpad8" revision="seventeen" />
+
+  <!-- QSSI audio -->
+  <project path="vendor/qcom/opensource/commonsys-intf/audio" name="android_vendor_qcom_opensource_audio-commonsys-intf" remote="lineage-gh" revision="lineage-24.0" />
+  <project path="vendor/qcom/opensource/commonsys/audio" name="android_vendor_qcom_opensource_audio" remote="lineage-gh" revision="lineage-24.0" />
+
+  <!-- sm8750 CAF, YAAP common has no sun support yet -->
+  <remove-project name="hardware_qcom-caf_common" />
+  <project path="hardware/qcom-caf/common" remote="lineage-gh" name="android_hardware_qcom-caf_common" revision="lineage-24.0" >
+    <!-- add guards for CAF repositories -->
+    <linkfile src="os_pickup_sepolicy_vndr.mk" dest="device/qcom/sepolicy_vndr/SEPolicy.mk" />
+    <linkfile src="os_pickup_qssi.bp" dest="hardware/qcom-caf/msm8953/Android.bp" />
+    <linkfile src="os_pickup.mk" dest="hardware/qcom-caf/msm8953/Android.mk" />
+    <linkfile src="os_pickup.bp" dest="hardware/qcom-caf/msm8996/Android.bp" />
+    <linkfile src="os_pickup.mk" dest="hardware/qcom-caf/msm8996/Android.mk" />
+    <linkfile src="os_pickup.bp" dest="hardware/qcom-caf/msm8998/Android.bp" />
+    <linkfile src="os_pickup.mk" dest="hardware/qcom-caf/msm8998/Android.mk" />
+    <linkfile src="os_pickup_qssi.bp" dest="hardware/qcom-caf/sdm660/Android.bp" />
+    <linkfile src="os_pickup.mk" dest="hardware/qcom-caf/sdm660/Android.mk" />
+    <linkfile src="os_pickup_qssi.bp" dest="hardware/qcom-caf/sdm845/Android.bp" />
+    <linkfile src="os_pickup.mk" dest="hardware/qcom-caf/sdm845/Android.mk" />
+    <linkfile src="os_pickup_qssi.bp" dest="hardware/qcom-caf/sm8150/Android.bp" />
+    <linkfile src="os_pickup.mk" dest="hardware/qcom-caf/sm8150/Android.mk" />
+    <linkfile src="os_pickup_qssi.bp" dest="hardware/qcom-caf/sm8250/Android.bp" />
+    <linkfile src="os_pickup.mk" dest="hardware/qcom-caf/sm8250/Android.mk" />
+    <linkfile src="os_pickup_qssi.bp" dest="hardware/qcom-caf/sm8350/Android.bp" />
+    <linkfile src="os_pickup.mk" dest="hardware/qcom-caf/sm8350/Android.mk" />
+    <linkfile src="os_pickup_audio-ar.mk" dest="hardware/qcom-caf/sm8450/audio/Android.mk" />
+    <linkfile src="os_pickup_qssi.bp" dest="hardware/qcom-caf/sm8450/Android.bp" />
+    <linkfile src="os_pickup.mk" dest="hardware/qcom-caf/sm8450/Android.mk" />
+    <linkfile src="os_pickup_audio-ar.mk" dest="hardware/qcom-caf/sm8550/audio/Android.mk" />
+    <linkfile src="os_pickup_qssi.bp" dest="hardware/qcom-caf/sm8550/Android.bp" />
+    <linkfile src="os_pickup.mk" dest="hardware/qcom-caf/sm8550/Android.mk" />
+    <linkfile src="os_pickup_audio-ar.mk" dest="hardware/qcom-caf/sm8650/audio/Android.mk" />
+    <linkfile src="os_pickup_qssi.bp" dest="hardware/qcom-caf/sm8650/Android.bp" />
+    <linkfile src="os_pickup.mk" dest="hardware/qcom-caf/sm8650/Android.mk" />
+    <linkfile src="os_pickup_qssi.bp" dest="hardware/qcom-caf/sm8750/Android.bp" />
+  </project>
+  <project path="device/qcom/sepolicy_vndr/sm8750" name="android_device_qcom_sepolicy_vndr" remote="lineage-gh" revision="lineage-24.0-caf-sm8750" />
+  <project path="hardware/qcom-caf/sm8750/audio/agm" name="android_vendor_qcom_opensource_agm" remote="lineage-gh" revision="lineage-24.0-caf-sm8750" />
+  <project path="hardware/qcom-caf/sm8750/audio/graphservices" name="android_vendor_qcom_opensource_audioreach-graphservices" remote="lineage-gh" revision="lineage-24.0-caf-sm8750" />
+  <project path="hardware/qcom-caf/sm8750/audio/pal" name="android_vendor_qcom_opensource_arpal-lx" remote="lineage-gh" revision="lineage-24.0-caf-sm8750" />
+  <project path="hardware/qcom-caf/sm8750/audio/primary-hal" name="android_hardware_qcom_audio-ar" remote="lineage-gh" revision="lineage-24.0-caf-sm8750" />
+  <project path="hardware/qcom-caf/sm8750/data-ipa-cfg-mgr" name="android_vendor_qcom_opensource_data-ipa-cfg-mgr" remote="lineage-gh" revision="lineage-24.0-caf-sm8750" />
+  <project path="hardware/qcom-caf/sm8750/dataipa" name="android_vendor_qcom_opensource_dataipa" remote="lineage-gh" revision="lineage-24.0-caf-sm8750" />
+  <project path="hardware/qcom-caf/sm8750/display/core" name="android_vendor_qcom_opensource_display-core" remote="lineage-gh" revision="lineage-24.0-caf-sm8750" />
+  <project path="hardware/qcom-caf/sm8750/display/hal" name="android_hardware_qcom_display" remote="lineage-gh" revision="lineage-24.0-caf-sm8750" />
+  <project path="hardware/qcom-caf/sm8750/display/intf" name="android_vendor_qcom_opensource_display-intf" remote="lineage-gh" revision="lineage-24.0-caf-sm8750" />
+</manifest>
